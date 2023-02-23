@@ -38,6 +38,14 @@ app.post('/login',async(req,res){
     res.status(200).json({'message' : 'login Successful'})
 })
 app.get('/leaderboard',async(req,res)=>{
+    Limit = 10
+    db.collection('Payment').find().sort({Donations : -1}).limit(Limit).toArray(function(err,result){
+        if(err){
+            res.send({status : false,message : 'Not found'})
+        }
+        res.send({status:true,msg : result})
+        
+    })
 
 })
 app.use('/api',require('./Routes/AuthRoute'))
