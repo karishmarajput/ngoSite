@@ -12,6 +12,7 @@ mongoose.connect(URI,{
     if(err) throw err;
     console.log('Connected to MONGODB')
 })
+app.use('/api',require('./Routes/AuthRoute'))
 const PORT = 5000;
 app.listen(PORT,() => {
     console.log('Server is listening at port : ',PORT)
